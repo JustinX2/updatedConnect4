@@ -15,14 +15,14 @@ class Game {
         this.makeBoard();
         this.makeHtmlBoard();
     }
-  // Step 1: Make javascript Board
+  // Make javascript Board
   makeBoard() {
       for (let y = 0; y < this.height; y++) {
           this.board.push(Array.from({length: this.width}));
       }
   }
 
-  // Step 2: Make HTML version of the Board
+  // Make HTML version of the Board
   makeHtmlBoard() {
       const board = document.getElementById('board');
       board.innerHTML = '';
@@ -53,7 +53,6 @@ class Game {
       }
   }
 
-  // Method to find spot for column (Step 3: Find Spot for Column)
   findSpotForCol(x) {
       for (let y = this.height - 1; y >= 0; y--) {
           if (!this.board[y][x]) {
@@ -63,7 +62,6 @@ class Game {
       return null;
   }
 
-  // Method to place in table (Step 4: Place In Table)
   placeInTable(y, x) {
     const piece = document.createElement('div');
     piece.classList.add('piece');
@@ -74,13 +72,11 @@ class Game {
     spot.append(piece);
 }
 
-  // Method to end the game (Step 5: End Game)
   endGame(msg) {
       alert(msg);
       this.gameOver = true;
   }
 
-  // Method to handle click event (Step 6: Handle Click Event)
   handleClick(evt) {
     if (this.gameOver) return;
     const x = +evt.target.id;
@@ -89,7 +85,6 @@ class Game {
         return;
     }
 
-    // Place piece in board and add to HTML table
     this.board[y][x] = this.currentPlayer;
     this.placeInTable(y, x);
 
@@ -107,7 +102,6 @@ class Game {
     this.currentPlayer = this.currentPlayer === this.players[0] ? this.players[1] : this.players[0];
 }
 
-  // Method to check for a win
   checkForWin() {
       const _win = cells =>
           cells.every(
@@ -143,5 +137,5 @@ document.getElementById('player-color-form').addEventListener('submit', function
     const player1 = new Player(player1Color);
     const player2 = new Player(player2Color);
 
-    game = new Game(player1, player2); // assign the new game to the game variable
+    game = new Game(player1, player2);
 });
